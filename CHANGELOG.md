@@ -1,8 +1,14 @@
+# 0.2.0  (2018-09-02)
+
+### Added
+
+-   "compress-images" module.
+
 # 0.1.0  (2018-09-01)
 
 ### Added
 
--   `rxjs` module.
+-   "rxjs" module.
 
 ### Changed
 

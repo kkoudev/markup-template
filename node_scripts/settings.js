@@ -13,6 +13,7 @@ const moment    = require('moment');
 // --------------------------------------------------
 
 const isProduction        = process.env.NODE_ENV === 'production';  // Production mode or not.
+const isCompressImage     = process.env.COMPRESS_IMAGE === 'true';  // Compress image or not.
 const projectRoot         = path.resolve(__dirname, '..');          // Project root directory path.
 const scriptsRoot         = `${projectRoot}/node_scripts`;          // Task script root directory path.
 const documentDir         = isProduction ? 'build' : '.temp';       // Document directory name.
@@ -33,6 +34,15 @@ const imagesDir           = 'images';                               // Images di
 const spritesDir          = '_sprites';                             // Sprites of images directory name.
 const spritesPadding      = 10;                                     // Padding of sprite image.
 const materialsDir        = 'materials';                            // Materials directory name.
+
+// Target image file extensions
+const imagesExts          = [
+  'jpg',
+  'jpeg',
+  'png',
+  'svg',
+  'gif',
+];
 
 // Target browsers
 const browsers            = [
@@ -65,6 +75,42 @@ const pugOptions          = {
 
 };
 
+// compress-images settings
+const compressImagesOptions = {
+
+  // jpg options
+  jpg: {
+    jpg: {
+      engine: 'jpegtran',
+      command: ['-progressive', '-copy', 'none', '-optimize']
+    }
+  },
+
+  // png options
+  png: {
+    png: {
+      engine: 'pngquant',
+      command: ['--speed', '1']
+    }
+  },
+
+  // svg options
+  svg: {
+    svg: {
+      engine: 'svgo',
+      command: ['--multipass']
+    }
+  },
+
+  gif: {
+    gif: {
+      engine: 'gifsicle',
+      command: ['--interlace']
+    }
+  }
+
+};
+
 
 // --------------------------------------------------
 // Server settings.
@@ -75,6 +121,7 @@ const frontendServerPort  = 8000;                         // Port number of fron
 
 module.exports = {
   isProduction,
+  isCompressImage,
   projectRoot,
   scriptsRoot,
   documentDir,
@@ -95,7 +142,9 @@ module.exports = {
   spritesDir,
   spritesPadding,
   materialsDir,
+  imagesExts,
   browsers,
   pugOptions,
+  compressImagesOptions,
   frontendServerPort,
 };
