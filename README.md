@@ -52,13 +52,13 @@ app/styles
 ## Launch
 
 ```bash
-yarn start
+yarnw start
 ```
 
 ## Build
 
 ```bash
-yarn dist
+yarnw dist
 ```
 
 ## Creates sprite image file
@@ -158,3 +158,7 @@ iconfont-(@font-faceで指定されたfont-family名)-(拡張子を除いたSVG�
 ```
 
 あとは、アイコンフォントを利用する要素に生成された `iconfont-example-XXX` の名称のルールセットをクラス属性に指定するだけで適用できます。
+
+## [Changelog](CHANGELOG.md)
+
+## [License](LICENSE)
